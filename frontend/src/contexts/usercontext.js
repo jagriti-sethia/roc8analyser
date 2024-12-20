@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/auth/register`,
+        `https://analyserback-qd2b8wzdu-jagritis-projects-deebc3ea.vercel.app/api/auth/register`,
         userData, {
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/auth/login`,
+        `https://analyserback-qd2b8wzdu-jagritis-projects-deebc3ea.vercel.app/api/auth/login`,
         credentials
       );
 

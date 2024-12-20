@@ -29,7 +29,7 @@ const GraphComponent = () => {
             try {
                 setIsLoading(true); // Start loading
                 const response = await fetch(
-                    `http://localhost:8000/api/chart/data?${query}`
+                    `https://analyserback-qd2b8wzdu-jagritis-projects-deebc3ea.vercel.app/api/chart/data?${query}`
                 );
                 const result = await response.json();
                 setData(result);
