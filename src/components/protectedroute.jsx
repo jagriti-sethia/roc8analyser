@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, useLocation, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const location = useLocation(); // Get current location
 
     if (!token) {

@@ -42,7 +42,7 @@ const Filter = () => {
     const fetchDates = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/chart/data`
+          `https://analyserback.vercel.app/api/chart/data`
         );
         const uniqueDates = Array.from(
           new Set(response?.data.map((entry) => entry.Day))
@@ -154,92 +154,92 @@ const Filter = () => {
   const isAnyFilterSelected = ageRange || gender || startDate || endDate;
 
   return (
-  <>
-    <div className="filter-container">
-      <h2 className="filter-title">Filter Options</h2>
-      <div className="filter-grid">
-        <div>
-          <label className="filter-label">
-            <FaUser className="filter-icon" /> Age Range:
-          </label>
-          <select
-            value={ageRange}
-            onChange={handleAgeChange}
-            className="filter-select"
-          >
-            <option value="">Select Age Range</option>
-            <option value="15-25">15-25</option>
-            <option value=">25">&gt; 25</option>
-          </select>
+    <>
+      <div className="filter-container">
+        <h2 className="filter-title">Filter Options</h2>
+        <div className="filter-grid">
+          <div>
+            <label className="filter-label">
+              <FaUser className="filter-icon" /> Age Range:
+            </label>
+            <select
+              value={ageRange}
+              onChange={handleAgeChange}
+              className="filter-select"
+            >
+              <option value="">Select Age Range</option>
+              <option value="15-25">15-25</option>
+              <option value=">25">&gt; 25</option>
+            </select>
+          </div>
+          <div>
+            <label className="filter-label">
+              <FaVenusMars className="filter-icon" /> Gender:
+            </label>
+            <select
+              value={gender}
+              onChange={handleGenderChange}
+              className="filter-select"
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div>
+            <label className="filter-label">
+              <FaCalendarAlt className="filter-icon" /> Start Date:
+            </label>
+            <select
+              value={startDate}
+              onChange={handleStartDateChange}
+              className="filter-select"
+            >
+              <option value="">Select Start Date</option>
+              {dates.map((date) => (
+                <option key={date} value={date}>
+                  {date}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="filter-label">
+              <FaCalendarAlt className="filter-icon" /> End Date:
+            </label>
+            <select
+              value={endDate}
+              onChange={handleEndDateChange}
+              className="filter-select"
+            >
+              <option value="">Select End Date</option>
+              {filteredEndDates.map((date) => (
+                <option key={date} value={date}>
+                  {date}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div>
-          <label className="filter-label">
-            <FaVenusMars className="filter-icon" /> Gender:
-          </label>
-          <select
-            value={gender}
-            onChange={handleGenderChange}
-            className="filter-select"
+        <div className="filter-actions">
+          <button
+            onClick={handleReset}
+            disabled={!isAnyFilterSelected}
+            className={`filter-button reset-button ${!isAnyFilterSelected ? "disabled" : ""}`}
           >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-        <div>
-          <label className="filter-label">
-            <FaCalendarAlt className="filter-icon" /> Start Date:
-          </label>
-          <select
-            value={startDate}
-            onChange={handleStartDateChange}
-            className="filter-select"
-          >
-            <option value="">Select Start Date</option>
-            {dates.map((date) => (
-              <option key={date} value={date}>
-                {date}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="filter-label">
-            <FaCalendarAlt className="filter-icon" /> End Date:
-          </label>
-          <select
-            value={endDate}
-            onChange={handleEndDateChange}
-            className="filter-select"
-          >
-            <option value="">Select End Date</option>
-            {filteredEndDates.map((date) => (
-              <option key={date} value={date}>
-                {date}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div className="filter-actions">
-        <button
-          onClick={handleReset}
-          disabled={!isAnyFilterSelected}
-          className={`filter-button reset-button ${!isAnyFilterSelected ? "disabled" : ""}`}
-        >
-          <FaRedo className="button-icon" /> Reset
-        </button>
+            <FaRedo className="button-icon" /> Reset
+          </button>
 
-        <button
-          onClick={handleShare}
-          disabled={!isAnyFilterSelected}
-          className={`filter-button share-button ${!isAnyFilterSelected ? "disabled" : ""}`}
-        >
-          <FaShareAlt className="button-icon" /> Share
-        </button>
+          <button
+            onClick={handleShare}
+            disabled={!isAnyFilterSelected}
+            className={`filter-button share-button ${!isAnyFilterSelected ? "disabled" : ""}`}
+          >
+            <FaShareAlt className="button-icon" /> Share
+          </button>
+        </div>
+        {showCopySuccess && <p className="copy-success-message">{copySuccess}</p>}
       </div>
-      {showCopySuccess && <p className="copy-success-message">{copySuccess}</p>}
-    </div>
     </>
   );
 };

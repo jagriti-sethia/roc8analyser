@@ -70,14 +70,17 @@ export const UserProvider = ({ children }) => {
       );
 
       const { username, token } = response.data;
+      if (response.data) {
+        // Save user data and token in localStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", username);
+        setUser(username); // Update user state with logged-in user data
+        navigate("/home"); // Redirect to homepage or dashboard after successful login
 
-      // Save user data and token in localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", username);
-      setUser(username); // Update user state with logged-in user data
-      navigate("/home"); // Redirect to homepage or dashboard after successful login
+      }
 
-      return response.data; // Return the response for further use if needed
+
+      // return response.data; // Return the response for further use if needed
     } catch (err) {
       setError(
         err.response?.data?.message ||
