@@ -14,11 +14,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Check if user is authenticated and redirect
-  useEffect(() => {
-    if (isAuthenticated()) {
-      navigate("/home"); // Redirect to the homepage
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (isAuthenticated()) {
+  //     navigate("/home"); // Redirect to the homepage
+  //   }
+  // }, [isAuthenticated, navigate]);
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
