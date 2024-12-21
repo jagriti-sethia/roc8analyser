@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://imaginative-twilight-9ba144.netlify.app/",
+  "homepage": "https://jagriti-roc8-analyzer-site.netlify.app/",
   "dependencies": {
     "axios": "^1.7.9",
     "chart.js": "^4.4.7",
